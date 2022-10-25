@@ -17,11 +17,13 @@ const useStyles = createStyles((theme) => ({
         height: '90%',
         padding: theme.spacing.xs,
         color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.black,
+    },
 
+    onHover: {
         '&:hover': {
             backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
         },
-    },
+    }
 }));
 
 const data = [{image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days'}, {image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days'}, {image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days'}]
@@ -30,7 +32,7 @@ const WarrantTable: React.FC = () => {
     const { classes } = useStyles();
     const rows = data.map((item) => (
         <tr key={item.name}>
-          <td>
+          <td className={classes.onHover}>
             <Menu withArrow>
                 <Menu.Target>
                     <UnstyledButton className={classes.user}>
@@ -69,7 +71,7 @@ const WarrantTable: React.FC = () => {
 
     return (
         <ScrollArea>
-            <Table verticalSpacing="sm">
+            <Table verticalSpacing="sm" striped>
                 <thead>
                     <th>
                         Warrants

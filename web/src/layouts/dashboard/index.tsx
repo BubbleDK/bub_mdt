@@ -16,7 +16,6 @@ const Dashboard: React.FC = () => {
         <Grid gutter="md">
           <Grid.Col>
             <BulletinBoard />
-            {/* <Skeleton height={SECONDARY_COL_HEIGHT} radius="md" animate={false} /> */}
           </Grid.Col>
           <Grid.Col>
             <Skeleton height={SECONDARY_COL_HEIGHT} radius="md" animate={false} />

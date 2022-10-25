@@ -4,7 +4,7 @@ const UserRoleTable: React.FC = () => {
     return (
         <Box>
             <ScrollArea>
-                <Table sx={{ minWidth: 300 }} verticalSpacing="xs">
+                <Table sx={{ minWidth: 300 }} verticalSpacing="xs" striped>
                     <thead>
                         <tr>
                             <th>Employee</th>

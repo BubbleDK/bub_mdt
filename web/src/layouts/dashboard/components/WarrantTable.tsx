@@ -8,7 +8,7 @@ import {
     Table,
     Menu,
 } from '@mantine/core';
-import { IconSearch, IconSettings, IconTrash } from '@tabler/icons';
+import { IconListDetails, IconSearch, IconSettings, IconTrash } from '@tabler/icons';
   
 const useStyles = createStyles((theme) => ({
     user: {
@@ -19,7 +19,7 @@ const useStyles = createStyles((theme) => ({
         color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.black,
 
         '&:hover': {
-        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
+            backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
         },
     },
 }));
@@ -48,14 +48,15 @@ const WarrantTable: React.FC = () => {
                             </div>
 
                             <Text color="dimmed" size="xs" style={{paddingTop: 20}}>
-                                    {item.expiresIn}
+                                {item.expiresIn}
                             </Text>
                         </Group>
                     </UnstyledButton>
                 </Menu.Target>
                 <Menu.Dropdown>
-                    <Menu.Item icon={<IconSettings size={14} />}>Edit</Menu.Item>
+                    <Menu.Item icon={<IconListDetails size={14} />}>Details</Menu.Item>
                     <Menu.Item icon={<IconSearch size={14} />}>Lookup</Menu.Item>
+                    <Menu.Item icon={<IconSettings size={14} />}>Edit</Menu.Item>
 
                     <Menu.Divider />
 

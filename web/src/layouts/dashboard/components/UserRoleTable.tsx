@@ -1,6 +1,29 @@
 import { Badge, Table, Group, Text, ScrollArea, Box } from '@mantine/core';
 
+const data = [{key: '1', name: 'John Doe', rank: 'Cheif', status: true}, {key: '2', name: 'Jenna Doe', rank: 'Captain', status: false}, {key: '3', name: 'Jenna Doe', rank: 'Cadet', status: false}, {key: '4', name: 'Jenna Doe', rank: 'Cadet', status: true},]
+
 const UserRoleTable: React.FC = () => {
+    const trueFirst = data.sort((a, b) => Number(b.status) - Number(a.status));
+    const rows = trueFirst.map((item) => (
+        <tr key={item.key}>
+            <td>
+                <Group spacing="sm">
+                <div>
+                    <Text size="sm" weight={500}>
+                        {item.name}
+                    </Text>
+                </div>
+                </Group>
+            </td>
+            <td>
+                <p>{item.rank}</p>
+            </td>
+            <td>
+                {item.status ? <Badge fullWidth>Active</Badge> : <Badge fullWidth color="gray">Inactive</Badge>}
+            </td>
+        </tr>
+    ));
+
     return (
         <Box>
             <ScrollArea>
@@ -13,40 +36,7 @@ const UserRoleTable: React.FC = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr key={"item.name"}>
-                            <td>
-                                <Group spacing="sm">
-                                <div>
-                                    <Text size="sm" weight={500}>
-                                        {"John Doe"}
-                                    </Text>
-                                </div>
-                                </Group>
-                            </td>
-                            <td>
-                                <p>Cheif</p>
-                            </td>
-                            <td>
-                                <Badge fullWidth>Active</Badge>
-                            </td>
-                        </tr>
-                        <tr key={"item.name"}>
-                            <td>
-                                <Group spacing="sm">
-                                <div>
-                                    <Text size="sm" weight={500}>
-                                        {"Jenna Doe"}
-                                    </Text>
-                                </div>
-                                </Group>
-                            </td>
-                            <td>
-                                <p>Captain</p>
-                            </td>
-                            <td>
-                                <Badge fullWidth color="gray">Inactive</Badge>
-                            </td>
-                        </tr>
+                        {rows}
                     </tbody>
                 </Table>
             </ScrollArea>

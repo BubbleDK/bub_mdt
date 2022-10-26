@@ -67,7 +67,7 @@ const WarrantTable: React.FC = () => {
             </Menu>
           </td>
         </tr>
-      ));
+    ));
 
     return (
         <ScrollArea style={{ height: 760 }}>

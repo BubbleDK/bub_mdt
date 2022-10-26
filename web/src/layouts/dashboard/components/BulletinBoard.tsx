@@ -1,5 +1,5 @@
-import { Button, createStyles, Group, Menu, Paper, ScrollArea, Table, Text, TypographyStylesProvider, useMantineTheme } from "@mantine/core";
-import { IconListDetails, IconSearch, IconSettings, IconTrash } from "@tabler/icons";
+import { Badge, Button, createStyles, Divider, Group, Image, Modal, Paper, ScrollArea, Table, Text, TypographyStylesProvider, useMantineTheme } from "@mantine/core";
+import { useState } from "react";
 
 const useStyles = createStyles((theme) => ({
     comment: {
@@ -16,7 +16,7 @@ const useStyles = createStyles((theme) => ({
         marginBottom: 0,
       },
     },
-  }));
+}));
 
 const announcements = [
     {
@@ -24,23 +24,37 @@ const announcements = [
         writtenBy: 'John Doe',
         postedAt: 'Just now',
         body: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestias earum quasi ducimus reprehenderit dignissimos, fugiat, aliquam accusamus, commodi cupiditate soluta est consectetur voluptatem minus provident repellendus temporibus necessitatibus molestiae quae asperiores. Ab consequuntur obcaecati soluta minima, quas blanditiis voluptas corrupti cum vel quasi ea voluptatum enim dicta dolorum in laboriosam.',
-
+        key: '1',
     },
     {
         Header: 'This is too',
         writtenBy: 'John Doe',
         postedAt: '10 minutes ago',
         body: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestias earum quasi ducimus reprehenderit dignissimos, fugiat, aliquam accusamus, commodi cupiditate soluta est consectetur voluptatem minus provident repellendus temporibus necessitatibus molestiae quae asperiores. Ab consequuntur obcaecati soluta minima, quas blanditiis voluptas corrupti cum vel quasi ea voluptatum enim dicta dolorum in laboriosam.',
-
+        key: '2',
     },
 ]
+
+interface IAnnouncements {
+    Header: 'string',
+    writtenBy: 'string',
+    postedAt: 'string',
+    body: 'string',
+}
 
 const BulletinBoard: React.FC = () => {
     const { classes } = useStyles();
     const theme = useMantineTheme();
     const SECONDARY_COL_HEIGHT = 760 / 2 - theme.spacing.md / 2;
+    const [modalInfo, setModalInfo] = useState<IAnnouncements>();
+    const [opened, setOpened] = useState(false);
+    const openModel = (info: any) => {
+        console.log(JSON.stringify(info))
+        setModalInfo(info)
+        setOpened(true)
+    }
     const rows = announcements.map((item) => (
-        <tr key={item.Header}>
+        <tr key={item.key}>
             <td>
                 <Paper withBorder radius="md" className={classes.comment}>
                     <Group>
@@ -55,7 +69,7 @@ const BulletinBoard: React.FC = () => {
                         <div className={classes.content} dangerouslySetInnerHTML={{ __html: item.body.substring(0, 150) + '...' }} />
                     </TypographyStylesProvider>
 
-                    <Button variant="outline" compact style={{ marginTop: 10 }}>
+                    <Button variant="outline" compact style={{ marginTop: 10 }} onClick={() => openModel(item)}>
                         View
                     </Button>
                 </Paper>
@@ -64,18 +78,43 @@ const BulletinBoard: React.FC = () => {
     ));
 
     return (
-        <ScrollArea style={{ height: SECONDARY_COL_HEIGHT }}>
-            <Table verticalSpacing="sm">
-                <thead>
-                    <th>
-                        Bulletin Board
-                    </th>
-                </thead>
-                <tbody>
-                    {rows}
-                </tbody>
-            </Table>
-        </ScrollArea>
+        <>
+            <ScrollArea style={{ height: SECONDARY_COL_HEIGHT }}>
+                <Table verticalSpacing="sm">
+                    <thead>
+                        <th>
+                            Bulletin Board
+                        </th>
+                    </thead>
+                    <tbody>
+                        {rows}
+                    </tbody>
+                </Table>
+            </ScrollArea>
+            {modalInfo && <Modal opened={opened} onClose={() => { setOpened(false); setModalInfo(undefined) }} centered overlayOpacity={0.2} withCloseButton={false} size={500}>
+                <Group position="apart">
+                    <Text size="lg" weight={500}>{modalInfo.Header}</Text>
+                    <Badge>{modalInfo.postedAt}</Badge>
+                </Group>
+
+                <Divider my="sm" />
+
+                <Text size="sm" color="dimmed" mt={5}>
+                    {modalInfo.body}
+                </Text>
+
+                <Divider my="sm" />
+
+                <div>
+                    <Text size="xs" color="dimmed">
+                        {"Written by"}
+                    </Text>
+                    <Text weight={500} size="sm">
+                        {modalInfo.writtenBy}
+                    </Text>
+                </div>
+            </Modal>}
+        </>
     )
 }
 

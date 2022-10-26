@@ -13,8 +13,6 @@ repository 'https://github.com/BubbleDK/bub_mdt'
 
 --[[ Manifest ]] --
 dependencies {
-	'/onesync',
-	'pma-voice',
 	'ox_lib',
 	'ox_core'
 }

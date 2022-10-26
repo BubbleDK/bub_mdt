@@ -49,7 +49,6 @@ const BulletinBoard: React.FC = () => {
     const [modalInfo, setModalInfo] = useState<IAnnouncements>();
     const [opened, setOpened] = useState(false);
     const openModel = (info: any) => {
-        console.log(JSON.stringify(info))
         setModalInfo(info)
         setOpened(true)
     }

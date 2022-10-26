@@ -26,7 +26,7 @@ const useStyles = createStyles((theme) => ({
     }
 }));
 
-const data = [{image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days'}, {image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days'}, {image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days'}]
+const data = [{image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days'}, {image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days'}, {image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days'}, {image: '', name: 'John Dope', reason: 'Reckless Driving', expiresIn: 'expires in 10 days'}, {image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days'},{image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days'},{image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days'},{image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days'},{image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days'},]
 
 const WarrantTable: React.FC = () => {
     const { classes } = useStyles();
@@ -70,7 +70,7 @@ const WarrantTable: React.FC = () => {
       ));
 
     return (
-        <ScrollArea>
+        <ScrollArea style={{ height: 760 }}>
             <Table verticalSpacing="sm" striped>
                 <thead>
                     <th>

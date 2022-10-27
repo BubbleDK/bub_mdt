@@ -6,8 +6,6 @@ end
 exports('isAuthorised', isAuthorised)
 
 RegisterNetEvent('bub_mdt:server:openMDT', function()
-    if source == '' then source = nil end
-
     local authorised = source == nil or isAuthorised(source)
 
     if authorised then
@@ -16,7 +14,6 @@ RegisterNetEvent('bub_mdt:server:openMDT', function()
 end)
 
 lib.addCommand('police', 'mdt', function()
-    if source == '' then source = nil end
     local authorised = source == nil or isAuthorised(source)
 
     if authorised then

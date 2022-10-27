@@ -90,6 +90,7 @@ const BulletinBoard: React.FC = () => {
                     </tbody>
                 </Table>
             </ScrollArea>
+            
             {modalInfo && <Modal opened={opened} onClose={() => { setOpened(false); setModalInfo(undefined) }} centered overlayOpacity={0.2} withCloseButton={false} size={500}>
                 <Group position="apart">
                     <Text size="lg" weight={500}>{modalInfo.Header}</Text>

@@ -9,6 +9,7 @@ import {
     Menu,
 } from '@mantine/core';
 import { IconListDetails, IconSearch, IconSettings, IconTrash } from '@tabler/icons';
+import { useState } from 'react';
   
 const useStyles = createStyles((theme) => ({
     user: {
@@ -26,12 +27,31 @@ const useStyles = createStyles((theme) => ({
     }
 }));
 
-const data = [{image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days'}, {image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days'}, {image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days'}, {image: '', name: 'John Dope', reason: 'Reckless Driving', expiresIn: 'expires in 10 days'}, {image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days'},{image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days'},{image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days'},{image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days'},{image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days'},]
+const data = [{image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days', id: 1}, {image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days', id: 2}, {image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days', id: 3}, {image: '', name: 'John Dope', reason: 'Reckless Driving', expiresIn: 'expires in 10 days', id: 4}, {image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days', id: 5}, {image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days', id: 6}, {image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days', id: 7}, {image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days', id: 8}, {image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days', id: 9},]
 
 const WarrantTable: React.FC = () => {
     const { classes } = useStyles();
+    const [data, setData] = useState([{image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days', id: 1}, {image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days', id: 2}, {image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days', id: 3}, {image: '', name: 'John Dope', reason: 'Reckless Driving', expiresIn: 'expires in 10 days', id: 4}, {image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days', id: 5}, {image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days', id: 6}, {image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days', id: 7}, {image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days', id: 8}, {image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days', id: 9}])
+    const deleteWarrant = (id: number) => {
+        const removeIndex = data.map(function(item) { return item.id; }).indexOf(id);
+
+        // remove object
+        data.splice(removeIndex, 1);
+        setData([...data])
+
+
+        // console.log(JSON.stringify(data))
+        // for (let i = 0; i < data.length; i++) {
+        //     if (data[i].id == id) {
+        //         console.log(i)
+        //         data.splice(id, 1);
+        //         console.log(data[i])
+        //     }
+        // }
+        // 
+    }
     const rows = data.map((item) => (
-        <tr key={item.name}>
+        <tr key={item.id}>
           <td className={classes.onHover}>
             <Menu withArrow>
                 <Menu.Target>
@@ -62,7 +82,7 @@ const WarrantTable: React.FC = () => {
 
                     <Menu.Divider />
 
-                    <Menu.Item color="red" icon={<IconTrash size={14} />}>Delete warrant</Menu.Item>
+                    <Menu.Item color="red" onClick={() => deleteWarrant(item.id)} icon={<IconTrash size={14} />}>Delete warrant</Menu.Item>
                 </Menu.Dropdown>
             </Menu>
           </td>

@@ -13,6 +13,7 @@ repository 'https://github.com/BubbleDK/bub_mdt'
 
 --[[ Manifest ]] --
 dependencies {
+    'ox_core',
 	'ox_lib',
 	'ox_core'
 }

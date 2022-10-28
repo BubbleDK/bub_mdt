@@ -1,4 +1,4 @@
-import { Box, createStyles, Transition, Navbar, Group, Code, AppShell, Header, Image, Center, Grid } from '@mantine/core';
+import { Box, createStyles, Transition, Navbar, Group, Code, Image, Center, Grid } from '@mantine/core';
 import { useState } from 'react';
 import { Routes, Route, NavLink } from 'react-router-dom';
 import { useNuiEvent } from './hooks/useNuiEvent';
@@ -21,11 +21,6 @@ import './App.css';
 const useStyles = createStyles((theme, _params, getRef) => {
   const icon = getRef('icon');
   return {
-    container: {
-      position: 'relative',
-      top: '10%',
-    },
-
     pageLayout: {
       backgroundColor: theme.colors.dark[7],
     },

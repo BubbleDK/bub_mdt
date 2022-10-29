@@ -75,7 +75,7 @@ const WarrantTable: React.FC = () => {
     ));
 
     return (
-        <ScrollArea style={{ height: 760 }}>
+        <ScrollArea style={{ height: 760, paddingRight: 10 }}>
             <Table verticalSpacing="sm" striped>
                 <thead>
                     <th>

@@ -55,7 +55,7 @@ const BulletinBoard: React.FC = () => {
     const rows = announcements.map((item) => (
         <tr key={item.key}>
             <td>
-                <Paper withBorder radius="md" className={classes.comment}>
+                <Paper withBorder className={classes.comment}>
                     <Group>
                         <div>
                             <Text size="sm">{item.Header}</Text>
@@ -78,7 +78,7 @@ const BulletinBoard: React.FC = () => {
 
     return (
         <>
-            <ScrollArea style={{ height: SECONDARY_COL_HEIGHT }}>
+            <ScrollArea style={{ height: SECONDARY_COL_HEIGHT, paddingRight: 5 }}>
                 <Table verticalSpacing="sm">
                     <thead>
                         <th>

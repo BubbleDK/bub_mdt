@@ -2,6 +2,7 @@ import { Container, Grid, SimpleGrid, Skeleton, useMantineTheme } from '@mantine
 import BulletinBoard from './components/BulletinBoard';
 import UserRoleTable from './components/UserRoleTable';
 import WarrantTable from './components/WarrantTable';
+import RecentEvents from './components/RecentEvents';
 
 const PRIMARY_COL_HEIGHT = 760;
 
@@ -18,7 +19,7 @@ const Dashboard: React.FC = () => {
             <BulletinBoard />
           </Grid.Col>
           <Grid.Col>
-            <Skeleton height={SECONDARY_COL_HEIGHT} radius="md" animate={false} />
+            <RecentEvents />
           </Grid.Col>
         </Grid>
         <WarrantTable />

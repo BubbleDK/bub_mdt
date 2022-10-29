@@ -29,13 +29,13 @@ const useStyles = createStyles((theme) => ({
 
 const WarrantTable: React.FC = () => {
     const { classes } = useStyles();
-    const [data, setData] = useState([{image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days', id: 1}, {image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days', id: 2}, {image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days', id: 3}, {image: '', name: 'John Dope', reason: 'Reckless Driving', expiresIn: 'expires in 10 days', id: 4}, {image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days', id: 5}, {image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days', id: 6}, {image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days', id: 7}, {image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days', id: 8}, {image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days', id: 9}])
+    const [warrants, setWarrants] = useState([{image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days', id: 1}, {image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days', id: 2}, {image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days', id: 3}, {image: '', name: 'John Dope', reason: 'Reckless Driving', expiresIn: 'expires in 10 days', id: 4}, {image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days', id: 5}, {image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days', id: 6}, {image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days', id: 7}, {image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days', id: 8}, {image: '', name: 'John Doe', reason: 'Reckless Driving', expiresIn: 'expires in 5 days', id: 9}])
     const deleteWarrant = (id: number) => {
-        const removeIndex = data.findIndex(item => item.id === id);
-        data.splice(removeIndex, 1);
-        setData([...data])
+        const removeIndex = warrants.findIndex(item => item.id === id);
+        warrants.splice(removeIndex, 1);
+        setWarrants([...warrants])
     }
-    const rows = data.map((item) => (
+    const rows = warrants.map((item) => (
         <tr key={item.id}>
           <td className={classes.onHover}>
             <Menu withArrow>

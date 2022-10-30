@@ -1,4 +1,4 @@
-import { isEnvBrowser } from "./misc";
+import {isEnvBrowser} from "./misc";
 
 /**
  * Simple wrapper around fetch API tailored for CEF/NUI use. This abstraction

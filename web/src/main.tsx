@@ -1,11 +1,11 @@
-import { MantineProvider } from '@mantine/core';
+import {MantineProvider} from '@mantine/core';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import './index.css';
-import { isEnvBrowser } from './utils/misc';
-import { ModalsProvider } from '@mantine/modals';
-import { HashRouter } from 'react-router-dom';
+import {isEnvBrowser} from './utils/misc';
+import {ModalsProvider} from '@mantine/modals';
+import {HashRouter} from 'react-router-dom';
 
 if (isEnvBrowser()) {
   const root = document.getElementById('root')
@@ -18,10 +18,10 @@ if (isEnvBrowser()) {
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <MantineProvider theme={{ colorScheme: 'dark' }}>
-      <ModalsProvider modalProps={{ transition: 'slide-up' }}>
+    <MantineProvider theme={{colorScheme: 'dark'}}>
+      <ModalsProvider modalProps={{transition: 'slide-up'}}>
         <HashRouter>
-          <App />
+          <App/>
         </HashRouter>
       </ModalsProvider>
     </MantineProvider>

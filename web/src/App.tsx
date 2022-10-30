@@ -1,7 +1,7 @@
-import { Box, createStyles, Transition, Navbar, Group, Code, Image, Center, Grid } from '@mantine/core';
-import { useState } from 'react';
-import { Routes, Route, NavLink } from 'react-router-dom';
-import { useNuiEvent } from './hooks/useNuiEvent';
+import {Box, createStyles, Transition, Navbar, Group, Code, Image, Center, Grid} from '@mantine/core';
+import {useState} from 'react';
+import {Routes, Route, NavLink} from 'react-router-dom';
+import {useNuiEvent} from './hooks/useNuiEvent';
 import Dashboard from './layouts/dashboard';
 import Incidents from './layouts/incidents';
 import Reports from './layouts/reports';
@@ -70,11 +70,11 @@ const useStyles = createStyles((theme, _params, getRef) => {
 
     linkActive: {
       '&, &:hover': {
-        backgroundColor: theme.fn.variant({ variant: 'light', color: theme.primaryColor })
+        backgroundColor: theme.fn.variant({variant: 'light', color: theme.primaryColor})
           .background,
-        color: theme.fn.variant({ variant: 'light', color: theme.primaryColor }).color,
+        color: theme.fn.variant({variant: 'light', color: theme.primaryColor}).color,
         [`& .${icon}`]: {
-          color: theme.fn.variant({ variant: 'light', color: theme.primaryColor }).color,
+          color: theme.fn.variant({variant: 'light', color: theme.primaryColor}).color,
         },
       },
     },
@@ -83,26 +83,28 @@ const useStyles = createStyles((theme, _params, getRef) => {
 
 
 const data = [
-  { link: '', label: 'Dashboard', icon: IconLayoutDashboard },
-  { link: 'profiles', label: 'Profiles', icon: IconUserCircle },
-  { link: 'incidents', label: 'Incidents', icon: IconScript },
-  { link: 'reports', label: 'Reports', icon: IconFileDescription },
-  { link: 'evidence', label: 'Evidence', icon: IconBriefcase },
+  {link: '', label: 'Dashboard', icon: IconLayoutDashboard},
+  {link: 'profiles', label: 'Profiles', icon: IconUserCircle},
+  {link: 'incidents', label: 'Incidents', icon: IconScript},
+  {link: 'reports', label: 'Reports', icon: IconFileDescription},
+  {link: 'evidence', label: 'Evidence', icon: IconBriefcase},
 ];
 
 const App: React.FC = () => {
   const [visible, setVisible] = useState<boolean>(true)
   const [active, setActive] = useState<string>('');
-  const { classes, cx } = useStyles();
+  const {classes, cx} = useStyles();
 
   const links = data.map((item) => (
     <NavLink
-      key={item.label} 
+      key={item.label}
       to={`/${item.link}`}
-      onClick={() => { setActive(item.link); }} 
-      className={cx(classes.link, { [classes.linkActive]: active === item.link })}
+      onClick={() => {
+        setActive(item.link);
+      }}
+      className={cx(classes.link, {[classes.linkActive]: active === item.link})}
     >
-      <item.icon className={classes.linkIcon} stroke={1.5} />
+      <item.icon className={classes.linkIcon} stroke={1.5}/>
       <span>{item.label}</span>
     </NavLink>
   ));
@@ -115,8 +117,8 @@ const App: React.FC = () => {
         {(style) => (
           <div className='container'>
             <Grid justify="center">
-              <Grid.Col span={2} style={{ height: 800, padding: 0 }}>
-                <Navbar p="md" style={{ height: 800, }}> 
+              <Grid.Col span={2} style={{height: 800, padding: 0}}>
+                <Navbar p="md" style={{height: 800,}}>
                   <Navbar.Section grow>
                     <Center>
                       <Image
@@ -128,26 +130,26 @@ const App: React.FC = () => {
                       />
                     </Center>
                     <Group className={classes.header} position="apart">
-                      <Code sx={{ fontWeight: 700 }}>John Doe</Code>
+                      <Code sx={{fontWeight: 700}}>John Doe</Code>
                     </Group>
                     {links}
                   </Navbar.Section>
 
                   <Navbar.Section className={classes.footer}>
                     <a href="#" className={classes.link} onClick={(event) => event.preventDefault()}>
-                      <IconLogout className={classes.linkIcon} stroke={1.5} />
+                      <IconLogout className={classes.linkIcon} stroke={1.5}/>
                       <span>Logout</span>
                     </a>
                   </Navbar.Section>
                 </Navbar>
               </Grid.Col>
-              <Grid.Col span={8} style={{ height: 800 }} className={classes.pageLayout}>
+              <Grid.Col span={8} style={{height: 800}} className={classes.pageLayout}>
                 <Routes>
-                  <Route path="/" element={<Dashboard />} />
-                  <Route path="/profiles" element={<Profiles />} />
-                  <Route path="/incidents" element={<Incidents />} />
-                  <Route path='/reports' element={<Reports />} />
-                  <Route path='/evidence' element={<Evidence />} />
+                  <Route path="/" element={<Dashboard/>}/>
+                  <Route path="/profiles" element={<Profiles/>}/>
+                  <Route path="/incidents" element={<Incidents/>}/>
+                  <Route path='/reports' element={<Reports/>}/>
+                  <Route path='/evidence' element={<Evidence/>}/>
                 </Routes>
               </Grid.Col>
             </Grid>

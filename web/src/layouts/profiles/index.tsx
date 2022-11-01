@@ -1,4 +1,5 @@
 import {Container, Divider, Grid, SimpleGrid, Skeleton, useMantineTheme} from "@mantine/core";
+import SearchTable from "./components/SearchTable";
 
 const Profiles: React.FC = () => {
   const theme = useMantineTheme();
@@ -6,7 +7,8 @@ const Profiles: React.FC = () => {
   const SECONDARY_COL_HEIGHT = PRIMARY_COL_HEIGHT / 2 - theme.spacing.md / 2;
   return (
     <Container style={{margin: 0, maxWidth: '100%', padding: '10px', height: '760px'}}>
-      <Skeleton height={205} radius="md" animate={false}/>
+      <SearchTable />
+      {/*<Skeleton height={205} radius="md" animate={false}/>*/}
 
       <Divider my="sm"/>
 

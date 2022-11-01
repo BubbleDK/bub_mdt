@@ -17,6 +17,8 @@
     "@mantine/hooks": "^5.6.1",
     "@mantine/modals": "^5.6.1",
     "@tabler/icons": "^1.106.0",
+    "dayjs": "^1.11.6",
+    "mantine-datatable": "^1.7.13",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.6.0",

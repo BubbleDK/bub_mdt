@@ -58,7 +58,7 @@ const RecentEvents: React.FC = () => {
                   </Text>
 
                   <Text color="dimmed" size="xs">
-                    {item.editBy} {item.event} this {item.eventCat}
+                    {item.editBy} {item.event} a {item.eventCat}
                   </Text>
                 </div>
 

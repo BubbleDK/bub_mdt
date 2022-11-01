@@ -1,16 +1,28 @@
-import {Badge, Table, Group, Text, ScrollArea, Box} from '@mantine/core';
+import {Badge, Table, Group, Text, ScrollArea, Box, Tooltip} from '@mantine/core';
 
-const data = [{key: '1', name: 'John Doe', rank: 'Cheif', status: true}, {
-  key: '2',
-  name: 'Jenna Doe',
-  rank: 'Captain',
-  status: false
-}, {key: '3', name: 'Jenna Doe', rank: 'Cadet', status: false}, {
-  key: '4',
-  name: 'Jenna Doe',
-  rank: 'Cadet',
-  status: true
-},]
+const data = [
+  {
+    key: '1',
+    name: 'John Doe',
+    rank: 'Chief',
+    status: true
+  }, {
+    key: '2',
+    name: 'Jenna Doe',
+    rank: 'Captain',
+    status: false
+  }, {
+    key: '3',
+    name: 'Jenna Doe',
+    rank: 'Cadet',
+    status: false
+  }, {
+    key: '4',
+    name: 'Jenna Doe',
+    rank: 'Cadet',
+    status: true
+  }
+]
 
 const UserRoleTable: React.FC = () => {
   const trueFirst = data.sort((a, b) => Number(b.status) - Number(a.status));
@@ -29,7 +41,13 @@ const UserRoleTable: React.FC = () => {
         <p>{item.rank}</p>
       </td>
       <td>
-        {item.status ? <Badge fullWidth>Active</Badge> : <Badge fullWidth color="gray">Inactive</Badge>}
+        {item.status ?
+          <Badge fullWidth>Active</Badge>
+          :
+          <Tooltip label="Last seen 30/10/2022" withArrow>
+            <Badge fullWidth color="gray">Inactive</Badge>
+          </Tooltip>
+        }
       </td>
     </tr>
   ));
@@ -46,7 +64,7 @@ const UserRoleTable: React.FC = () => {
           </tr>
           </thead>
           <tbody>
-          {rows}
+            {rows}
           </tbody>
         </Table>
       </ScrollArea>

@@ -17,7 +17,7 @@ const SearchTable: React.FC = () => {
   useEffect(() => {
     const now = dayjs();
     setProfiles(
-      profiles.filter(({ firstName, lastName, birthDate }) => {
+      employees.filter(({ firstName, lastName, birthDate }) => {
         if (veteransOnly && now.diff(birthDate, 'years') < 40) {
           return false;
         }
@@ -56,6 +56,7 @@ const SearchTable: React.FC = () => {
       </Grid>
       <Box style={{height: 150}}>
         <DataTable
+          highlightOnHover
           withBorder
           records={profiles}
           columns={[

@@ -109,12 +109,12 @@ const WarrantTable: React.FC = () => {
     <ScrollArea style={{height: 760, paddingRight: 10}}>
       <Table verticalSpacing="sm" striped>
         <thead>
-        <th>
-          Warrants
-        </th>
+          <th>
+            Warrants
+          </th>
         </thead>
         <tbody>
-        {rows}
+          {rows}
         </tbody>
       </Table>
     </ScrollArea>

@@ -5,9 +5,9 @@ import { DataTable } from 'mantine-datatable';
 import { useEffect, useState } from 'react';
 import { IconSearch } from '@tabler/icons';
 
-const employees = [{firstName: 'Emil', lastName: 'world', birthDate: '1957-01-25', gender: 'male', stateId: 'MDT12345', job: 'police'}, {firstName: 'Hello', lastName: 'world', gender: 'female', stateId: 'MDT12345', job: 'police'}, {firstName: 'Hello', lastName: 'world', gender: 'male', job: 'police'}, {firstName: 'Hello', lastName: 'world'}, {firstName: 'Hello', lastName: 'world', gender: 'male'}, {firstName: 'Hello', lastName: 'world'}, {firstName: 'Hello', lastName: 'world'}, {firstName: 'Hello', lastName: 'world'},];
+const employees = [{firstName: 'Emil', lastName: 'world', birthDate: '1957-01-25', gender: 'male', stateId: 'MDT12345', job: 'police', image: 'https://happymag.tv/wp-content/uploads/2021/05/Untitled-3-870x524.jpg'}, {firstName: 'Hello', lastName: 'world', gender: 'female', stateId: 'MDT12345', job: 'police'}, {firstName: 'Hello', lastName: 'world', gender: 'male', job: 'police'}, {firstName: 'Hello', lastName: 'world'}, {firstName: 'Hello', lastName: 'world', gender: 'male'}, {firstName: 'Hello', lastName: 'world'}, {firstName: 'Hello', lastName: 'world'}, {firstName: 'Hello', lastName: 'world'},];
 
-const SearchTable: React.FC = () => {
+const SearchTable: React.FC<any> = ({ setCitizen }: any) => {
   const [profiles, setProfiles] = useState(employees);
 
   const [query, setQuery] = useState('');
@@ -66,8 +66,8 @@ const SearchTable: React.FC = () => {
             { accessor: 'gender', render: ({ gender }) => `${gender}` },
             { accessor: 'job', render: ({ job }) => `${job}` },
           ]}
-          onRowClick={({ firstName, lastName, gender, job }) => {
-            console.log(firstName, lastName, gender, job)
+          onRowClick={({ firstName, lastName, gender, job, image }) => {
+            setCitizen([{ firstName: firstName, lastName: lastName, gender: gender, job: job, image: image }])
           }}
         />
       </Box>

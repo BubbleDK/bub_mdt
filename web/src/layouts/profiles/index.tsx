@@ -1,6 +1,7 @@
 import {Container, Divider, Grid, SimpleGrid, Skeleton, useMantineTheme} from "@mantine/core";
 import SearchTable from "./components/SearchTable";
 import ProfileInformation from "./components/ProfileInformation";
+import ProfileIncidents from "./components/ProfileIncidents";
 import {useState, useEffect} from "react";
 
 const Profiles: React.FC = () => {
@@ -12,16 +13,14 @@ const Profiles: React.FC = () => {
   return (
     <Container style={{margin: 0, maxWidth: '100%', padding: '10px', height: '760px'}}>
       <SearchTable  setCitizen={setCitizen}/>
-      {/*<Skeleton height={205} radius="md" animate={false}/>*/}
 
       <Divider my="sm"/>
 
       <SimpleGrid cols={2} spacing="md">
         <ProfileInformation citizen={citizen} setCitizen={setCitizen} />
-        {/*<Skeleton height={530} radius="md" animate={false}/>*/}
         <Grid gutter="md">
           <Grid.Col>
-            <Skeleton height={SECONDARY_COL_HEIGHT} radius="md" animate={false}/>
+            <ProfileIncidents />
           </Grid.Col>
           <Grid.Col>
             <Skeleton height={SECONDARY_COL_HEIGHT} radius="md" animate={false}/>

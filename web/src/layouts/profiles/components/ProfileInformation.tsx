@@ -14,7 +14,8 @@ import {
   Textarea,
 } from '@mantine/core';
 import {IconLinkOff, IconDeviceFloppy, IconId, IconUser, IconAddressBook, IconPhone} from '@tabler/icons';
-import {useEffect, useState} from "react";
+import {useEffect, useState, Dispatch} from "react";
+import {Profile} from "../../../types";
 
 const useStyles = createStyles((theme) => ({
   action: {
@@ -25,16 +26,18 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-const ProfileInformation: React.FC<any> = ({citizen, setCitizen}: any) => {
-  const [visible, setVisible] = useState(true);
+interface IProps {
+  setCitizen: Dispatch<Profile[]>;
+  citizen?: Profile[];
+}
+
+const ProfileInformation: React.FC<IProps> = ({citizen, setCitizen}: IProps) => {
   const [citizenPicture, setCitizenPicture] = useState(false);
   const { classes, theme } = useStyles();
-  useEffect(() => { setVisible(true); setTimeout(() => {setVisible(false)}, 1000) }, [citizen]);
-  if (citizen.length === 1) {
+  if (citizen !== undefined) {
     return (
       <>
-        <div style={{ height: 530, position: 'relative' }}>
-          <LoadingOverlay visible={visible} overlayOpacity={1} radius="xs" />
+        <div style={{ height: 530 }}>
           <Card withBorder shadow="sm" radius="xs" style={{height: 530}}>
             <Card.Section withBorder inheritPadding py="xs">
               <Group position="apart">
@@ -68,7 +71,7 @@ const ProfileInformation: React.FC<any> = ({citizen, setCitizen}: any) => {
                   <TextInput icon={<IconId size={16} />} placeholder={citizen[0].stateId} radius="xs" disabled/>
                   <TextInput icon={<IconUser size={16} />} placeholder={`${citizen[0].firstName} ${citizen[0].lastName}`} radius="xs" disabled/>
                   <TextInput icon={<IconAddressBook size={16} />} placeholder={citizen[0].job.charAt(0).toUpperCase() + citizen[0].job.slice(1)} radius="xs" disabled/>
-                  <TextInput icon={<IconPhone size={16} />} placeholder={citizen[0].phoneNumber} radius="xs" disabled/>
+                  <TextInput icon={<IconPhone size={16} />} placeholder={citizen[0].phone_number} radius="xs" disabled/>
                 </Stack>
               </SimpleGrid>
             </Card.Section>

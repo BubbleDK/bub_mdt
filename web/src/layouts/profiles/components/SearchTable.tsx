@@ -67,7 +67,7 @@ const SearchTable: React.FC<any> = ({ setCitizen }: any) => {
             { accessor: 'job', render: ({ job }) => `${job}` },
           ]}
           onRowClick={({ firstName, lastName, job, image, stateId, phoneNumber }) => {
-            setCitizen([{ firstName: firstName, lastName: lastName, job: job, image: image, stateId: stateId, phoneNumber: phoneNumber }])
+            setCitizen([{ firstName, lastName, job, image, stateId, phoneNumber }])
           }}
         />
       </Box>

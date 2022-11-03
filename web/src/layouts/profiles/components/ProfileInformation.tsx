@@ -5,7 +5,6 @@ import {
   Tooltip,
   ActionIcon,
   Image,
-  LoadingOverlay,
   createStyles,
   Modal,
   TextInput,
@@ -34,7 +33,7 @@ interface IProps {
 const ProfileInformation: React.FC<IProps> = ({citizen, setCitizen}: IProps) => {
   const [citizenPicture, setCitizenPicture] = useState(false);
   const { classes, theme } = useStyles();
-  if (citizen !== undefined) {
+  if (citizen !== undefined && citizen.length === 1) {
     return (
       <>
         <div style={{ height: 530 }}>
@@ -145,6 +144,7 @@ const ProfileInformation: React.FC<IProps> = ({citizen, setCitizen}: IProps) => 
           autosize
           minRows={4}
           maxRows={6}
+          disabled
         />
       </Card.Section>
     </Card>

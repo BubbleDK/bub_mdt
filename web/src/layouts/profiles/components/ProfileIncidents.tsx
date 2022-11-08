@@ -1,14 +1,15 @@
 import {
-  Button,
+  ScrollArea,
   Card, createStyles,
   Group, Paper,
   Text, TypographyStylesProvider,
-  useMantineTheme,
+  UnstyledButton,
   Stack,
   Center
 } from '@mantine/core';
-import { IconDatabaseOff } from '@tabler/icons';
+import { IconDatabaseOff, IconChevronRight } from '@tabler/icons';
 import {Incidents, Profile} from "../../../types";
+import {useEffect} from "react";
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -28,6 +29,26 @@ const useStyles = createStyles((theme) => ({
       marginBottom: 0,
     },
   },
+
+  user: {
+    display: 'block',
+    width: '100%',
+    color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.black,
+    padding: '5px',
+    paddingRight: '10px',
+  },
+
+  item : {
+    paddingTop: '5px',
+    paddingBottom: '5px',
+    paddingRight: '10px',
+    paddingLeft: '10px',
+    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.white,
+
+    '&:hover': {
+      backgroundColor: '#17181b',
+    },
+  }
 }));
 
 interface IProps {
@@ -48,23 +69,40 @@ const ProfileIncidents: React.FC<IProps> = ({incidents}: IProps) => {
         </Card.Section>
 
         <Card.Section mt="sm" inheritPadding>
-          {incidents !== undefined && incidents.length === 1 ? incidents.map((incident) => (
-            <Paper>
-              {incident.id}
-            </Paper>
-          ))
-          :
-            <div>
-              <Center style={{height: 190}}>
-                <Stack spacing="sm" align="center">
-                  <IconDatabaseOff size={24} style={{fontSize: 0, borderRadius: '50%', padding: '10px', background: '#2C2E33', color: '#5c5f66'}} color="gray" />
-                  <Text style={{color: '#909296', fontSize: '13px', lineHeight: 1.55, }}>
-                    No Records found
-                  </Text>
-                </Stack >
-              </Center>
-            </div>
-          }
+          <ScrollArea style={{ height: 190 }}>
+            {incidents !== undefined && incidents.length > 1 ?
+              incidents.sort((a, b) => (a.id > b.id) ? 1 : -1).map((incident) => (
+                <Stack spacing="xs">
+                  <UnstyledButton className={classes.user}>
+                    <Group className={classes.item}>
+                      <div style={{ flex: 1 }}>
+                        <Text size="sm" weight={500}>
+                          {incident.title}
+                        </Text>
+
+                        <Text color="dimmed" size="xs">
+                          ID: {incident.id}
+                        </Text>
+                      </div>
+
+                      {<IconChevronRight size={14} stroke={1.5} />}
+                    </Group>
+                  </UnstyledButton>
+                </Stack>
+              ))
+            :
+              <div>
+                <Center style={{height: 190}}>
+                  <Stack spacing="sm" align="center">
+                    <IconDatabaseOff size={24} style={{fontSize: 0, borderRadius: '50%', padding: '10px', background: '#2C2E33', color: '#5c5f66'}} color="gray" />
+                    <Text style={{color: '#909296', fontSize: '13px', lineHeight: 1.55, }}>
+                      No Records found
+                    </Text>
+                  </Stack >
+                </Center>
+              </div>
+            }
+          </ScrollArea>
         </Card.Section>
       </Card>
     </div>

@@ -74,7 +74,7 @@ const SearchTable: React.FC<IProps> = ({setCitizen, setIncidents}: IProps) => {
           ]}
           onRowClick={({ firstName, lastName, job, image, stateId, phone_number }) => {
             setCitizen([{firstName, lastName, job, image, stateId, phone_number}])
-            setIncidents([{id: '123'}])
+            setIncidents([{id: '123', title: 'Store Robbery'}, {id: '231', title: 'Car Theft'}, {id: '7984', title: 'Drug sale'}, {id: '527', title: 'Violence'},])
           }}
         />
       </Box>

@@ -11,4 +11,5 @@ export type Profile = {
 
 export type Incidents = {
   id: string,
+  title: string,
 }

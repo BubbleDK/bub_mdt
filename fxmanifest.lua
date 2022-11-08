@@ -15,7 +15,7 @@ repository 'https://github.com/BubbleDK/bub_mdt'
 dependencies {
     'ox_core',
 	'ox_lib',
-	'ox_core'
+	'oxmysql'
 }
 
 shared_scripts {

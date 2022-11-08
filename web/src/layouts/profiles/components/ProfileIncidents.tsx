@@ -2,14 +2,13 @@ import {
   ScrollArea,
   Card, createStyles,
   Group, Menu,
-  Text, TypographyStylesProvider,
+  Text,
   UnstyledButton,
   Stack,
   Center
 } from '@mantine/core';
 import {IconDatabaseOff, IconChevronRight, IconListDetails} from '@tabler/icons';
-import {Incidents, Profile} from "../../../types";
-import {useEffect} from "react";
+import {Incidents} from "../../../types";
 
 const useStyles = createStyles((theme) => ({
   card: {

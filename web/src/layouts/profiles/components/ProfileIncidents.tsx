@@ -1,13 +1,13 @@
 import {
   ScrollArea,
   Card, createStyles,
-  Group, Paper,
+  Group, Menu,
   Text, TypographyStylesProvider,
   UnstyledButton,
   Stack,
   Center
 } from '@mantine/core';
-import { IconDatabaseOff, IconChevronRight } from '@tabler/icons';
+import {IconDatabaseOff, IconChevronRight, IconListDetails} from '@tabler/icons';
 import {Incidents, Profile} from "../../../types";
 import {useEffect} from "react";
 
@@ -74,19 +74,27 @@ const ProfileIncidents: React.FC<IProps> = ({incidents}: IProps) => {
               incidents.sort((a, b) => (a.id > b.id) ? 1 : -1).map((incident) => (
                 <Stack spacing="xs">
                   <UnstyledButton className={classes.user}>
-                    <Group className={classes.item}>
-                      <div style={{ flex: 1 }}>
-                        <Text size="sm" weight={500}>
-                          {incident.title}
-                        </Text>
+                    <Menu withArrow>
+                      <Menu.Target>
+                        <Group className={classes.item}>
+                          <div style={{ flex: 1 }}>
+                            <Text size="sm" weight={500}>
+                              {incident.title}
+                            </Text>
 
-                        <Text color="dimmed" size="xs">
-                          ID: {incident.id}
-                        </Text>
-                      </div>
+                            <Text color="dimmed" size="xs">
+                              ID: {incident.id}
+                            </Text>
+                          </div>
 
-                      {<IconChevronRight size={14} stroke={1.5} />}
-                    </Group>
+                          {<IconChevronRight size={14} stroke={1.5} />}
+                        </Group>
+                      </Menu.Target>
+                      <Menu.Dropdown>
+                        <Menu.Item icon={<IconListDetails size={14}/>}>View Incident</Menu.Item>
+
+                      </Menu.Dropdown>
+                    </Menu>
                   </UnstyledButton>
                 </Stack>
               ))

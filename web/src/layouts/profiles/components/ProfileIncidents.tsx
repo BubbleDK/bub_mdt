@@ -70,7 +70,7 @@ const ProfileIncidents: React.FC<IProps> = ({incidents}: IProps) => {
 
         <Card.Section mt="sm" inheritPadding>
           <ScrollArea style={{ height: 190 }}>
-            {incidents !== undefined && incidents.length > 1 ?
+            {incidents !== undefined && incidents.length > 0 ?
               incidents.sort((a, b) => (a.id > b.id) ? 1 : -1).map((incident) => (
                 <Stack spacing="xs">
                   <UnstyledButton className={classes.user}>

@@ -7,6 +7,7 @@ export type Profile = {
   phone_number: string;
   image?: string;
   stateId: string;
+  relatedIncidents?: Incidents[];
 }
 
 export type Incidents = {

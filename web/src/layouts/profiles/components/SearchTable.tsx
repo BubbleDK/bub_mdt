@@ -2,12 +2,18 @@ import { Box, Checkbox, Grid, TextInput } from '@mantine/core';
 import { useDebouncedValue } from '@mantine/hooks';
 import dayjs from 'dayjs';
 import { DataTable } from 'mantine-datatable';
-import { useEffect, useState } from 'react';
+import {Dispatch, useEffect, useState} from 'react';
 import { IconSearch } from '@tabler/icons';
+import {Incidents, Profile} from "../../../types";
 
-const employees = [{firstName: 'Emil', lastName: 'world', birthDate: '1957-01-25', gender: 'male', stateId: 'MDT12345', job: 'police', image: 'https://happymag.tv/wp-content/uploads/2021/05/Untitled-3-870x524.jpg', phone_number: '41286509'}, {firstName: 'Hello', lastName: 'world', gender: 'female', stateId: 'MDT12345', job: 'police'}, {firstName: 'Hello', lastName: 'world', gender: 'male', job: 'police'}, {firstName: 'Hello', lastName: 'world'}, {firstName: 'Hello', lastName: 'world', gender: 'male'}, {firstName: 'Hello', lastName: 'world'}, {firstName: 'Hello', lastName: 'world'}, {firstName: 'Hello', lastName: 'world'},];
+const employees = [{firstName: 'Hello', lastName: 'world', birthDate: '1957-01-25', gender: 'male', stateId: 'MDT12345', job: 'police', image: 'https://happymag.tv/wp-content/uploads/2021/05/Untitled-3-870x524.jpg', phone_number: '88888888'}, {firstName: 'World', lastName: 'Hello', birthDate: '1987-01-25', gender: 'female', stateId: 'MDT98765', job: 'police', image: 'https://happymag.tv/wp-content/uploads/2021/05/Untitled-3-870x524.jpg', phone_number: '9999999'}];
 
-const SearchTable: React.FC<any> = ({ setCitizen }: any) => {
+interface IProps {
+  setCitizen: Dispatch<Profile[]>;
+  setIncidents: Dispatch<Incidents[]>;
+}
+
+const SearchTable: React.FC<IProps> = ({setCitizen, setIncidents}: IProps) => {
   const [profiles, setProfiles] = useState(employees);
 
   const [query, setQuery] = useState('');
@@ -67,7 +73,8 @@ const SearchTable: React.FC<any> = ({ setCitizen }: any) => {
             { accessor: 'job', render: ({ job }) => `${job}` },
           ]}
           onRowClick={({ firstName, lastName, job, image, stateId, phone_number }) => {
-            setCitizen([{ firstName, lastName, job, image, stateId, phone_number }])
+            setCitizen([{firstName, lastName, job, image, stateId, phone_number}])
+            setIncidents([{id: '123'}])
           }}
         />
       </Box>

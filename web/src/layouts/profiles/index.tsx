@@ -2,7 +2,7 @@ import {Container, Divider, Grid, LoadingOverlay, SimpleGrid, Skeleton, useManti
 import SearchTable from "./components/SearchTable";
 import ProfileInformation from "./components/ProfileInformation";
 import ProfileIncidents from "./components/ProfileIncidents";
-import ToBeNamed from "./components/ToBeNamed"
+import ProfileExtraInformation from "./components/ProfileExtraInformation"
 import {useState, useEffect} from "react";
 import {Incidents, Profile} from "../../types";
 
@@ -31,7 +31,7 @@ const Profiles: React.FC = () => {
               <ProfileIncidents incidents={incidents}/>
             </Grid.Col>
             <Grid.Col>
-              <ToBeNamed />
+              <ProfileExtraInformation />
             </Grid.Col>
           </Grid>
         </SimpleGrid>

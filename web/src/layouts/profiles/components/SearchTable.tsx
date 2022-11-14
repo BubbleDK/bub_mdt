@@ -65,12 +65,11 @@ const SearchTable: React.FC<IProps> = ({setCitizen, setIncidents}: IProps) => {
             { accessor: 'stateid', render: ({ stateId }) => `${stateId}` },
             { accessor: 'name', render: ({ firstName, lastName }) => `${firstName} ${lastName}` },
             { accessor: 'age', render: ({ birthDate }) => dayjs().diff(birthDate, 'y') },
-            { accessor: 'gender', render: ({ gender }) => `${gender}` },
-            { accessor: 'job', render: ({ job }) => `${job}` },
+            { accessor: 'gender', render: ({ gender }) => `${gender.charAt(0).toUpperCase() + gender.slice(1)}` },
+            { accessor: 'job', render: ({ job }) => `${job.charAt(0).toUpperCase() + job.slice(1)}` },
           ]}
           onRowClick={({ firstName, lastName, job, image, stateId, phone_number, relatedIncidents }) => {
             setCitizen([{firstName, lastName, job, image, stateId, phone_number}])
-            // setIncidents([{id: relatedIncidents[0].id, title: relatedIncidents[0].title}])
             setIncidents([...relatedIncidents])
           }}
         />

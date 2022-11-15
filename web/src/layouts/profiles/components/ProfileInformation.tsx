@@ -11,8 +11,9 @@ import {
   SimpleGrid,
   Stack,
   Textarea,
-  MultiSelect,
-  Chip, Grid, Badge, Center, ScrollArea,
+  Button,
+  Chip, Grid, Badge, ScrollArea,
+  Select,
 } from '@mantine/core';
 import {
   IconLinkOff,
@@ -22,9 +23,7 @@ import {
   IconAddressBook,
   IconDeviceMobile,
   IconPlus,
-  IconHomeCheck,
-  IconAlertOctagon,
-  IconInfoCircle
+  IconX
 } from '@tabler/icons';
 import {useState, Dispatch, useEffect} from "react";
 import {Incidents, Profile} from "../../../types";
@@ -50,6 +49,7 @@ interface IProps {
 
 const ProfileInformation: React.FC<IProps> = ({citizen, setCitizen, setIncidents}: IProps) => {
   const [citizenPicture, setCitizenPicture] = useState(false);
+  const [createTagsOpened, setCreateTagsOpened] = useState(false);
   const [tags, setTags] = useState([
     { value: 'informer', label: 'Informer' },
     { value: 'wanted', label: 'Wanted' },
@@ -112,7 +112,7 @@ const ProfileInformation: React.FC<IProps> = ({citizen, setCitizen, setIncidents
                 <Text size="md" weight={500}>
                   Tags
                 </Text>
-                <ActionIcon size="sm" variant="light">
+                <ActionIcon size="sm" variant="light" onClick={() => setCreateTagsOpened(true)}>
                   <IconPlus size={16} />
                 </ActionIcon>
               </Group>
@@ -122,7 +122,7 @@ const ProfileInformation: React.FC<IProps> = ({citizen, setCitizen, setIncidents
                   {citizen[0].tags !== undefined && citizen[0].tags.length > 0 &&
                     citizen[0].tags.map((tag) => (
                       <Grid.Col span="content">
-                        <Badge radius="xs" color={tag.color}>
+                        <Badge radius="xs" color={tag.color} rightSection={<ActionIcon size="xs" radius="xl" variant="transparent"><IconX size={10} /></ActionIcon>}>
                           {tag.name}
                         </Badge>
                       </Grid.Col>
@@ -153,6 +153,23 @@ const ProfileInformation: React.FC<IProps> = ({citizen, setCitizen, setIncidents
             alt="Placeholder for citizen picture"
             withPlaceholder
           />
+        </Modal>
+
+        <Modal
+          opened={createTagsOpened}
+          onClose={() => setCreateTagsOpened(false)}
+          title={"Create a new tag"}
+          centered
+        >
+          <TextInput
+            placeholder="Enter tag name.."
+            radius="xs"
+            style={{paddingBottom: 15}}
+          />
+          <Select clearable placeholder="Pick a color" style={{ width: '50%'}}  data={['Default', 'Red', 'Yellow', 'Teal']}/>
+          <Button variant="light" color="teal" radius="xs" compact uppercase style={{float: 'right'}}>
+            Create
+          </Button>
         </Modal>
       </>
     );

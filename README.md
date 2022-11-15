@@ -11,6 +11,6 @@ Mobile Data Terminal resource, only compatible with ox_core.
 
 
 ## Installation
-1. Download the latest version from [release page](https://github.com/overextended/oxmysql)
+1. Download the latest version from [release page](https://github.com/BubbleDK/bub_mdt/releases)
 2. Unzip `bub_mdt` into your `resources` directory
 3. Add `ensure bub_mdt` to your `server.cfg`

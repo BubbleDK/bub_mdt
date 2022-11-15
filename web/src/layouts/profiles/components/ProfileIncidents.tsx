@@ -64,6 +64,9 @@ const ProfileIncidents: React.FC<IProps> = ({incidents}: IProps) => {
         <Card.Section withBorder inheritPadding py="xs">
           <Group position="apart">
             <Text weight={500} style={{marginBottom: 3.5}}>Citizen Incidents</Text>
+            <Group spacing={8} mr={0}>
+              <Text size="xs" weight={400}>Total incidents: {incidents?.length}</Text>
+            </Group>
           </Group>
         </Card.Section>
 

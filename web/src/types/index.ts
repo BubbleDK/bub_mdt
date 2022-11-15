@@ -8,9 +8,15 @@ export type Profile = {
   image?: string;
   stateId: string;
   relatedIncidents?: Incidents[];
+  tags?: Tags[];
 }
 
 export type Incidents = {
-  id: string,
-  title: string,
+  id: string;
+  title: string;
+}
+
+export type Tags = {
+  name: string;
+  color: string;
 }

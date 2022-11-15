@@ -12,9 +12,20 @@ import {
   Stack,
   Textarea,
   MultiSelect,
-  Chip,
+  Chip, Grid, Badge, Center, ScrollArea,
 } from '@mantine/core';
-import {IconLinkOff, IconDeviceFloppy, IconId, IconUser, IconAddressBook, IconPhone} from '@tabler/icons';
+import {
+  IconLinkOff,
+  IconDeviceFloppy,
+  IconId,
+  IconUser,
+  IconAddressBook,
+  IconDeviceMobile,
+  IconPlus,
+  IconHomeCheck,
+  IconAlertOctagon,
+  IconInfoCircle
+} from '@tabler/icons';
 import {useState, Dispatch, useEffect} from "react";
 import {Incidents, Profile} from "../../../types";
 
@@ -82,7 +93,7 @@ const ProfileInformation: React.FC<IProps> = ({citizen, setCitizen, setIncidents
                   <TextInput icon={<IconId size={16} />} placeholder={citizen[0].stateId} radius="xs" disabled/>
                   <TextInput icon={<IconUser size={16} />} placeholder={`${citizen[0].firstName} ${citizen[0].lastName}`} radius="xs" disabled/>
                   <TextInput icon={<IconAddressBook size={16} />} placeholder={citizen[0].job.charAt(0).toUpperCase() + citizen[0].job.slice(1)} radius="xs" disabled/>
-                  <TextInput icon={<IconPhone size={16} />} placeholder={citizen[0].phone_number} radius="xs" disabled/>
+                  <TextInput icon={<IconDeviceMobile size={16} />} placeholder={citizen[0].phone_number} radius="xs" disabled/>
                 </Stack>
               </SimpleGrid>
             </Card.Section>
@@ -97,22 +108,28 @@ const ProfileInformation: React.FC<IProps> = ({citizen, setCitizen, setIncidents
                 <Chip defaultChecked variant="filled" radius="xs" color="indigo">Firearms License</Chip>
               </Group>
 
-              <Text size="md" weight={500}>
-                Tags
-              </Text>
-              <MultiSelect
-                style={{paddingTop: 5}}
-                data={tags}
-                placeholder="Select Tags"
-                searchable
-                creatable
-                getCreateLabel={(query) => `+ Create ${query}`}
-                onCreate={(query) => {
-                  const item = { value: query, label: query };
-                  setTags((current) => [...current, item]);
-                  return item;
-                }}
-              />
+              <Group>
+                <Text size="md" weight={500}>
+                  Tags
+                </Text>
+                <ActionIcon size="sm" variant="light">
+                  <IconPlus size={16} />
+                </ActionIcon>
+              </Group>
+
+              <ScrollArea style={{ height: 40, paddingTop: 10 }} type="scroll" offsetScrollbars scrollHideDelay={500}>
+                <Grid gutter="xs">
+                  {citizen[0].tags !== undefined && citizen[0].tags.length > 0 &&
+                    citizen[0].tags.map((tag) => (
+                      <Grid.Col span="content">
+                        <Badge radius="xs" color={tag.color}>
+                          {tag.name}
+                        </Badge>
+                      </Grid.Col>
+                    ))
+                  }
+                </Grid>
+              </ScrollArea>
             </Card.Section>
 
             <Card.Section mt="sm" inheritPadding pb="md" style={{ height: 125, marginRight: '-3px', marginLeft: '-3px' }}>
@@ -167,9 +184,9 @@ const ProfileInformation: React.FC<IProps> = ({citizen, setCitizen, setIncidents
           />
           <Stack spacing="xs" justify="space-around">
             <TextInput icon={<IconId size={16} />} placeholder={"STATE ID"} radius="xs" disabled/>
-            <TextInput icon={<IconId size={16} />} placeholder={"FULL NAME"} radius="xs" disabled/>
-            <TextInput icon={<IconId size={16} />} placeholder={"JOB"} radius="xs" disabled/>
-            <TextInput icon={<IconId size={16} />} placeholder={"PHONE NUMBER"} radius="xs" disabled/>
+            <TextInput icon={<IconUser size={16} />} placeholder={"FULL NAME"} radius="xs" disabled/>
+            <TextInput icon={<IconAddressBook size={16} />} placeholder={"JOB"} radius="xs" disabled/>
+            <TextInput icon={<IconDeviceMobile size={16} />} placeholder={"PHONE NUMBER"} radius="xs" disabled/>
           </Stack>
         </SimpleGrid>
       </Card.Section>
@@ -184,23 +201,14 @@ const ProfileInformation: React.FC<IProps> = ({citizen, setCitizen, setIncidents
           <Chip disabled defaultChecked variant="filled" radius="xs" color="indigo">Firearms License</Chip>
         </Group>
 
-        <Text size="md" weight={500}>
-          Tags
-        </Text>
-        <MultiSelect
-          disabled
-          style={{paddingTop: 5}}
-          data={tags}
-          placeholder="Select Tags"
-          searchable
-          creatable
-          getCreateLabel={(query) => `+ Create ${query}`}
-          onCreate={(query) => {
-            const item = { value: query, label: query };
-            setTags((current) => [...current, item]);
-            return item;
-          }}
-        />
+        <Group>
+          <Text size="md" weight={500}>
+            Tags
+          </Text>
+          <ActionIcon size="sm" variant="light" disabled>
+            <IconPlus size={16} />
+          </ActionIcon>
+        </Group>
       </Card.Section>
 
       <Card.Section mt="sm" inheritPadding pb="md" style={{ height: 125, marginRight: '-3px', marginLeft: '-3px' }}>

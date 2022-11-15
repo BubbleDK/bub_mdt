@@ -5,7 +5,9 @@ import {
   Grid,
   List, ThemeIcon,
   ScrollArea,
-  Divider
+  Divider,
+  Badge,
+  Center,
 } from '@mantine/core';
 import {IconCar, IconHomeCheck} from "@tabler/icons";
 
@@ -33,40 +35,56 @@ const ProfileExtraInformation: React.FC = () => {
               <Text weight={500}>Vehicles</Text>
               <Divider style={{padding: 5}} />
               <ScrollArea style={{ height: 145, padding: 5, }} type="scroll" offsetScrollbars scrollbarSize={2} scrollHideDelay={500}>
-                <List spacing="xs" size="lg" center icon={
-                    <ThemeIcon color="blue" size={24} radius="xl">
-                      <IconCar size={16} />
-                    </ThemeIcon>
-                  }
-                >
-                  <List.Item>Adder</List.Item>
-                  <List.Item>811</List.Item>
-                  <List.Item>Ardent</List.Item>
-                  <List.Item>Arbiter GT</List.Item>
-                  <List.Item>Asbo</List.Item>
-                  <List.Item>Astron</List.Item>
-                  <List.Item>Astron</List.Item>
-                </List>
+                <Grid gutter="xs">
+                  <Grid.Col span="content">
+                    <Badge style={{padding: 10}} radius="md" color="blue">
+                      <Center>
+                        <IconCar size={18} style={{paddingRight: 5}} />
+                        Adder
+                      </Center>
+                    </Badge>
+                  </Grid.Col>
+                  <Grid.Col span="content">
+                    <Badge style={{padding: 10}} radius="md" color="blue">
+                      <Center>
+                        <IconCar size={18} style={{paddingRight: 5}} />
+                        Adder
+                      </Center>
+                    </Badge>
+                  </Grid.Col>
+                </Grid>
               </ScrollArea>
             </Grid.Col>
             <Grid.Col span={2} style={{height: 200, paddingBottom: 5}}>
               <Text weight={500}>Properties</Text>
               <Divider style={{padding: 5}} />
               <ScrollArea style={{ height: 145, padding: 5, }} type="scroll" offsetScrollbars scrollbarSize={2} scrollHideDelay={500}>
-                <List spacing="xs" size="lg" center icon={
-                  <ThemeIcon color="orange" size={24} radius="xl">
-                    <IconHomeCheck size={16} />
-                  </ThemeIcon>
-                }
-                >
-                  <List.Item>Route 68 Sandy 7198</List.Item>
-                  <List.Item>South Rockford Drive</List.Item>
-                  <List.Item>Paleto Blvd</List.Item>
-                  <List.Item>Integrity Way</List.Item>
-                  <List.Item>Alta Street Plaza 4119</List.Item>
-                  <List.Item>Forum Drive</List.Item>
-                  <List.Item>Alta Street Plaza</List.Item>
-                </List>
+                <Grid gutter="xs">
+                  <Grid.Col span="content">
+                    <Badge style={{padding: 10}} radius="md" color="teal">
+                      <Center>
+                        <IconHomeCheck  size={18} style={{paddingRight: 5}} />
+                        Alta Street Plaza 4119
+                      </Center>
+                    </Badge>
+                  </Grid.Col>
+                  <Grid.Col span="content">
+                    <Badge style={{padding: 10}} radius="md" color="teal">
+                      <Center>
+                        <IconHomeCheck  size={18} style={{paddingRight: 5}} />
+                        Alta Street Plaza 4119
+                      </Center>
+                    </Badge>
+                  </Grid.Col>
+                  <Grid.Col span="content">
+                    <Badge style={{padding: 10}} radius="md" color="teal">
+                      <Center>
+                        <IconHomeCheck  size={18} style={{paddingRight: 5}} />
+                        Alta
+                      </Center>
+                    </Badge>
+                  </Grid.Col>
+                </Grid>
               </ScrollArea>
             </Grid.Col>
           </Grid>

@@ -50,11 +50,8 @@ interface IProps {
 const ProfileInformation: React.FC<IProps> = ({citizen, setCitizen, setIncidents}: IProps) => {
   const [citizenPicture, setCitizenPicture] = useState(false);
   const [createTagsOpened, setCreateTagsOpened] = useState(false);
-  const [tags, setTags] = useState([
-    { value: 'informer', label: 'Informer' },
-    { value: 'wanted', label: 'Wanted' },
-    { value: 'dangerous', label: 'Dangerous' },
-  ]);
+  const [colorValue, setColorValue] = useState<string | null>(null);
+  const [tagName, setTagName] = useState('');
   const { classes, theme } = useStyles();
   if (citizen !== undefined && citizen.length === 1) {
     return (
@@ -160,14 +157,32 @@ const ProfileInformation: React.FC<IProps> = ({citizen, setCitizen, setIncidents
           onClose={() => setCreateTagsOpened(false)}
           title={"Create a new tag"}
           centered
+          radius='xs'
+          overlayBlur={0}
         >
           <TextInput
             placeholder="Enter tag name.."
             radius="xs"
             style={{paddingBottom: 15}}
+            value={tagName}
+            onChange={(event) => setTagName(event.currentTarget.value)}
           />
-          <Select clearable placeholder="Pick a color" style={{ width: '50%'}}  data={['Default', 'Red', 'Yellow', 'Teal']}/>
-          <Button variant="light" color="teal" radius="xs" compact uppercase style={{float: 'right'}}>
+          <Select clearable value={colorValue} onChange={setColorValue} placeholder="Pick a color" style={{ width: '50%'}}  data={[{value: 'default', label: 'Default'}, {value: 'blue', label: 'Blue'}, {value: 'red', label: 'Red'}, {value: 'yellow', label: 'Yellow'}, {value: 'teal', label: 'Teal'},]}/>
+          <Button
+            variant="light"
+            color="blue"
+            radius="xs"
+            compact
+            uppercase
+            style={{float: 'right'}}
+            onClick={() => {
+
+              console.log(tagName)
+              console.log(colorValue || 'default')
+              //citizen[0].tags?.push({name: '', color: colorValue || 'default'})
+              setCreateTagsOpened(false);
+            }}
+          >
             Create
           </Button>
         </Modal>

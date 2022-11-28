@@ -3,7 +3,7 @@ import {useState} from 'react';
 import {Routes, Route, NavLink} from 'react-router-dom';
 import {useNuiEvent} from './hooks/useNuiEvent';
 import Dashboard from './layouts/dashboard';
-import Incidents from './layouts/incidents';
+import IncidentLayout from './layouts/incidents';
 import Reports from './layouts/reports';
 import Profiles from './layouts/profiles';
 import Evidence from './layouts/evidence';
@@ -147,7 +147,7 @@ const App: React.FC = () => {
                 <Routes>
                   <Route path="/" element={<Dashboard/>}/>
                   <Route path="/profiles" element={<Profiles/>}/>
-                  <Route path="/incidents" element={<Incidents/>}/>
+                  <Route path="/incidents" element={<IncidentLayout/>}/>
                   <Route path='/reports' element={<Reports/>}/>
                   <Route path='/evidence' element={<Evidence/>}/>
                 </Routes>

@@ -13,7 +13,7 @@ import {
   Textarea,
   Button,
   Chip, Grid, Badge, ScrollArea,
-  Select,
+  Select, Popover,
 } from '@mantine/core';
 import {
   IconLinkOff,
@@ -56,7 +56,7 @@ const ProfileInformation: React.FC<IProps> = ({citizen, setCitizen, setIncidents
   if (citizen !== undefined && citizen.length === 1) {
     return (
       <>
-        <div style={{ height: 530 }}>
+        <div style={{height: 530}}>
           <Card withBorder shadow="sm" radius="xs" style={{height: 530}} className={classes.card}>
             <Card.Section withBorder inheritPadding py="xs">
               <Group position="apart">
@@ -64,19 +64,22 @@ const ProfileInformation: React.FC<IProps> = ({citizen, setCitizen, setIncidents
                 <Group spacing={8} mr={0}>
                   <Tooltip label="Save" withArrow>
                     <ActionIcon className={classes.action}>
-                      <IconDeviceFloppy size={16} color={theme.colors.green[6]} />
+                      <IconDeviceFloppy size={16} color={theme.colors.green[6]}/>
                     </ActionIcon>
                   </Tooltip>
                   <Tooltip label="Unlink" withArrow>
-                    <ActionIcon className={classes.action} onClick={() => { setCitizen([]); setIncidents([])}}>
-                      <IconLinkOff size={16} color={theme.colors.gray[5]} />
+                    <ActionIcon className={classes.action} onClick={() => {
+                      setCitizen([]);
+                      setIncidents([])
+                    }}>
+                      <IconLinkOff size={16} color={theme.colors.gray[5]}/>
                     </ActionIcon>
                   </Tooltip>
                 </Group>
               </Group>
             </Card.Section>
 
-            <Card.Section mt="sm" style={{ height: 160, marginRight: '-3px', marginLeft: '-3px' }} inheritPadding pb="md">
+            <Card.Section mt="sm" style={{height: 160, marginRight: '-3px', marginLeft: '-3px'}} inheritPadding pb="md">
               <SimpleGrid cols={2} spacing="xs" verticalSpacing="xs">
                 <Image
                   width={260}
@@ -87,15 +90,19 @@ const ProfileInformation: React.FC<IProps> = ({citizen, setCitizen, setIncidents
                   onClick={() => setCitizenPicture(true)}
                 />
                 <Stack spacing="xs" justify="space-around">
-                  <TextInput icon={<IconId size={16} />} placeholder={citizen[0].stateId} radius="xs" disabled/>
-                  <TextInput icon={<IconUser size={16} />} placeholder={`${citizen[0].firstName} ${citizen[0].lastName}`} radius="xs" disabled/>
-                  <TextInput icon={<IconAddressBook size={16} />} placeholder={citizen[0].job.charAt(0).toUpperCase() + citizen[0].job.slice(1)} radius="xs" disabled/>
-                  <TextInput icon={<IconDeviceMobile size={16} />} placeholder={citizen[0].phone_number} radius="xs" disabled/>
+                  <TextInput icon={<IconId size={16}/>} placeholder={citizen[0].stateId} radius="xs" disabled/>
+                  <TextInput icon={<IconUser size={16}/>} placeholder={`${citizen[0].firstName} ${citizen[0].lastName}`}
+                             radius="xs" disabled/>
+                  <TextInput icon={<IconAddressBook size={16}/>}
+                             placeholder={citizen[0].job.charAt(0).toUpperCase() + citizen[0].job.slice(1)} radius="xs"
+                             disabled/>
+                  <TextInput icon={<IconDeviceMobile size={16}/>} placeholder={citizen[0].phone_number} radius="xs"
+                             disabled/>
                 </Stack>
               </SimpleGrid>
             </Card.Section>
 
-            <Card.Section mt="sm" inheritPadding pb="md" style={{ height: 120, marginRight: '-3px', marginLeft: '-3px' }}>
+            <Card.Section mt="sm" inheritPadding pb="md" style={{height: 120, marginRight: '-3px', marginLeft: '-3px'}}>
               <Text size="md" weight={500}>
                 Licenses
               </Text>
@@ -109,17 +116,44 @@ const ProfileInformation: React.FC<IProps> = ({citizen, setCitizen, setIncidents
                 <Text size="md" weight={500}>
                   Tags
                 </Text>
-                <ActionIcon size="sm" variant="light" onClick={() => setCreateTagsOpened(true)}>
-                  <IconPlus size={16} />
-                </ActionIcon>
+                <Popover width={300} trapFocus position="bottom" withArrow shadow="md">
+                  <Popover.Target>
+                    <ActionIcon size="sm" variant="light" onClick={() => setCreateTagsOpened(true)}>
+                      <IconPlus size={16}/>
+                    </ActionIcon>
+                  </Popover.Target>
+                  <Popover.Dropdown
+                    sx={(theme) => ({background: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white})}>
+                    <TextInput
+                      placeholder="Enter tag name.."
+                      style={{paddingBottom: 10}}
+                      value={tagName}
+                      onChange={(event) => setTagName(event.currentTarget.value)}
+                    />
+                    <Grid grow gutter="xs">
+                      <Grid.Col span={10}>
+                        <Select clearable value={colorValue} onChange={setColorValue} placeholder="Pick a color" data={[{value: 'blue', label: 'Blue'}, {
+                          value: 'red',
+                          label: 'Red'
+                        }, {value: 'yellow', label: 'Yellow'}, {value: 'teal', label: 'Teal'},]}/>
+                      </Grid.Col>
+                      <Grid.Col span={2}>
+                        <ActionIcon color="blue" size="lg" radius="xs" variant="light" onClick={() => {console.log(tagName); console.log(colorValue || 'default')}}>
+                          <IconPlus size={24}/>
+                        </ActionIcon>
+                      </Grid.Col>
+                    </Grid>
+                  </Popover.Dropdown>
+                </Popover>
               </Group>
 
-              <ScrollArea style={{ height: 40, paddingTop: 10 }} type="scroll" offsetScrollbars scrollHideDelay={500}>
+              <ScrollArea style={{height: 40, paddingTop: 10}} type="scroll" offsetScrollbars scrollHideDelay={500}>
                 <Grid gutter="xs">
                   {citizen[0].tags !== undefined && citizen[0].tags.length > 0 &&
                     citizen[0].tags.map((tag) => (
                       <Grid.Col span="content">
-                        <Badge radius="xs" color={tag.color} rightSection={<ActionIcon size="xs" radius="xl" variant="transparent"><IconX size={10} /></ActionIcon>}>
+                        <Badge radius="xs" color={tag.color}
+                               rightSection={<ActionIcon size="xs" radius="xl" variant="transparent"><IconX size={10}/></ActionIcon>}>
                           {tag.name}
                         </Badge>
                       </Grid.Col>
@@ -129,7 +163,7 @@ const ProfileInformation: React.FC<IProps> = ({citizen, setCitizen, setIncidents
               </ScrollArea>
             </Card.Section>
 
-            <Card.Section mt="sm" inheritPadding pb="md" style={{ height: 125, marginRight: '-3px', marginLeft: '-3px' }}>
+            <Card.Section mt="sm" inheritPadding pb="md" style={{height: 125, marginRight: '-3px', marginLeft: '-3px'}}>
               <Textarea
                 placeholder="Notes"
                 autosize
@@ -167,7 +201,11 @@ const ProfileInformation: React.FC<IProps> = ({citizen, setCitizen, setIncidents
             value={tagName}
             onChange={(event) => setTagName(event.currentTarget.value)}
           />
-          <Select clearable value={colorValue} onChange={setColorValue} placeholder="Pick a color" style={{ width: '50%'}}  data={[{value: 'default', label: 'Default'}, {value: 'blue', label: 'Blue'}, {value: 'red', label: 'Red'}, {value: 'yellow', label: 'Yellow'}, {value: 'teal', label: 'Teal'},]}/>
+          <Select clearable value={colorValue} onChange={setColorValue} placeholder="Pick a color"
+                  style={{width: '50%'}} data={[{value: 'default', label: 'Default'}, {value: 'blue', label: 'Blue'}, {
+            value: 'red',
+            label: 'Red'
+          }, {value: 'yellow', label: 'Yellow'}, {value: 'teal', label: 'Teal'},]}/>
           <Button
             variant="light"
             color="blue"

@@ -33,7 +33,7 @@ const IncidentsSearchTable: React.FC<IProps> = ({incidents, setIncidents}: IProp
         <Grid.Col xs={8} sm={9}>
           <TextInput
             sx={{ flexBasis: '60%' }}
-            placeholder="Search profiles..."
+            placeholder="Search incidents..."
             icon={<IconSearch size={16} />}
             value={query}
             onChange={(e) => setQuery(e.currentTarget.value)}
